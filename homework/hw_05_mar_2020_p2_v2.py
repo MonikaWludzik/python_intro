@@ -6,7 +6,9 @@ side1 = int(input("Input the length of the left and right edge of the rectangle:
 bottom2 = (int(bottom1)*("-"))
 print("+" + bottom2 + "+")
 
+whitespace = " " * bottom1
 side2 = "|" + (" "*(bottom1)) + "|\n"
+side2 = f"|{whitespace}|\n"
 print(side2*bottom1, end='')
 print("+" + bottom2 + "+")
 

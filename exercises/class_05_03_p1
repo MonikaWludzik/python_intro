@@ -1,0 +1,32 @@
+name = input('What is your name?')
+surname = "brown"
+print(name + '\n' + surname)
+
+result = surname.capitalize()
+print(result)
+
+num1 = 1.23
+num2 = 4.55
+num3 = 5.45
+num4 = int('788')
+
+#division for int/str won't work; multiplication will return 10x drhouse
+# strings can be added - linking
+
+#print(num1*num2*num3*num4)
+print(num1/num2/num3/num4)
+
+#enter \n, tab \t
+# to cancel reading the sign double the backlash
+#white signs
+#r - row do not interpret
+
+sciezka_do_pliku = r"c:\\\documents\\nowy folder\\tatry"
+print(sciezka_do_pliku)
+
+#funkcje i moduly
+
+zmienna = input('insert anything:')
+typ = type (zmienna)
+print(typ)
+

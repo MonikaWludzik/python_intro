@@ -1,0 +1,63 @@
+zmienna1 = int(input('insert number '))
+zmienna2 = int(input('insert number 2 '))
+
+#dodawanie = float(zmienna1)
+#dodawanie1 = float(zmienna2)
+
+result = (zmienna2 + zmienna1)
+print(result)
+
+#int zamienia parametr na int
+#str zamienia parametr na string
+
+typ = type(zmienna1)
+print (typ)
+typ2 = type(zmienna2)
+print(typ)
+
+#len - checking the length of string
+#banks use integers only exponent, fraction
+
+#interated object - non-interated object --- loop
+#indexing
+
+name = 'Jaume'
+print(name[3])
+#uciete_zdanie = zdanie[1:8:5]
+#print(len(uciete_zdanie))
+
+#indeksing name[0] including spaces
+# [1:3] poczatek do tego znaku
+#przedzial domkniety/otwarty/
+#seq start
+# seq end
+# 3rd every second number
+#also works with minuses [-1] last sign in seq
+#print(zdanie[dlugosc-1])
+#index od zera, lewy domkniety, prawy otwarty, 3 parametr skok
+
+#identation
+#instruction/expression
+#IF --- if condition met > the code is run
+#standard is identation of four space
+#dwukropek rozpoczyna kolejny blok
+
+#if: identation
+#elif - meeting else if condition
+# trzy warunki if, elif, elif, else
+
+zdanie ='Ala ma kota!
+
+ostatni_znak = zdanie[-1]
+
+if ostatni_znak == '!'
+    print('nie krzycz')
+
+else print('dziekuje')
+
+
+
+
+
+
+
