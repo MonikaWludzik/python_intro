@@ -18,40 +18,25 @@ def get_lower_case(contents):
 
 with open ('plik_do_odczytu', 'r+') as plik:
     contents = plik.read()
-    print(contents)
-    print(textstat.char_count(contents)) #characters in the file
-    print(textstat.lexicon_count(contents, removepunct=True)) #wordcount
-    print(textstat.sentence_count(contents)) #sentencecount
-    print(get_digits(contents))
-    print(get_lower_case(contents))
+    # print(contents)
+    # print(textstat.char_count(contents)) #characters in the file
+    # print(textstat.lexicon_count(contents, removepunct=True)) #wordcount
+    # print(textstat.sentence_count(contents)) #sentencecount
+    # print(get_digits(contents))
+    # print(len(get_lower_case(contents)))
+
+    with open ('statystyki', 'r+') as stats:
+        ilosc = list(stats.readlines())
+        ilosc_u = 0
+        if len(ilosc) > 1:
+            ilosc_u = int(ilosc[1])
+        stats.truncate(0)
+        stats.seek(0)
+        stats.write('Ilosc uruchomien: \n'+ (str(ilosc_u+1)+"\n"))
+        stats.write("Ilosc znakow: \n"+(str(textstat.char_count(contents))+"\n"))
+        stats.write("Ilosc slow: \n"+ str(textstat.lexicon_count(contents, removepunct=True))+"\n")
+        stats.write("Ilosc zdan: \n"+ str(textstat.sentence_count(contents))+"\n")
+        stats.write("Ilosc cyfr: \n"+str(get_digits(contents))+"\n")
+        stats.write("Ilosc malych liter: \n"+str(len(get_lower_case(contents)))+"\n")
 
 
-
-
-
-
-
-
-#     try:
-#         ilosc_uruchomien = int(ilosc_uruchomien)
-#         ilosc_uruchomien = ilosc_uruchomien =+ 1
-#     except:
-#         ilosc_uruchomien = 1
-#     print(ilosc_uruchomien)
-#
-#
-#
-
-
-
-
-# 1) open file
-# 2) count
-#
-# a) number of times the file was opened
-
-# d) digits
-# e) small letters
-# f) stats
-
-# saveit
