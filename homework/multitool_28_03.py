@@ -1,3 +1,5 @@
+from typing import Any, Union
+
 import homework.multitoolprog.Celsius
 import homework.multitoolprog.Fahrenheit
 import homework.multitoolprog.pieniadze
@@ -6,10 +8,12 @@ import homework.multitoolprog.wiekpsa
 import homework.multitoolprog.kwadrat
 import homework.multitoolprog.exitor
 import random
+import csv
 
 # wybor kolejnego prog, 8 wyjscie, litery i liczby + licznik uruchomien
 
 iterations = 0
+prog_run = {}
 
 while True:
     choice = input("""Witaj w Multitool Python Program by iSA
@@ -37,6 +41,12 @@ while True:
     if choice == "R":
         choice = random.choice(list(functions.keys()))
 
+    try:
+        num_run = prog_run[choice]
+        prog_run[choice] = num_run + 1
+    except:
+        prog_run[choice] = 1
+
     fn = functions[choice]
     fn()
 
@@ -44,6 +54,30 @@ while True:
         break
 
 print(iterations)
+print(prog_run)
+
+with open ("statystki.csv", 'w+') as stats:
+    csv_columns = ['Funkcja', 'Liczba uruchomien']
+    writer = csv.writer(stats)
+
+    value = prog_run[choice]
+    writer.writerow(csv_columns)
+
+    for key in prog_run:
+        name = key
+        writer.writerow([name, prog_run[key]])
+
+
+    # for line in prog_run:
+    #     writer.writerow("funkcja" + row)
+    # for row in iterations:
+    #     writer.writerow (row)
+    # num_run = prog_run[choice]
+    # prog_run[choice] = num_run + 1
+    # stats_writer = stats.writerow(prog_run, num_run)
+
+
+
 
 
 
