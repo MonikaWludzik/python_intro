@@ -1,24 +1,19 @@
 #from words import get_random_word
 import homework.hangman.lista_slow
+import homework.multitoolprog.Celsius
 
-
+def choose_between(prompt, min, max):
+    liczba_prob = min - 2
+    while (min <= liczba_prob <= max) is False:
+        liczba_prob = homework.multitoolprog.Celsius.interger_check(prompt)
+    return liczba_prob
 
 
 def wyswietl_liczbe_prob():
-    liczba_prob = ""
-    while liczba_prob.isnumeric() is False:
-        liczba_prob = input("Okresl ilosc prob zgadniecia slowa (1-20): ")
-        if 1 <= int(liczba_prob) <= 20:
-            return int(liczba_prob)
+    return choose_between("Okresl ilosc prob zgadniecia slowa (1-20): ", 1, 20)
 
 def wyswietl_dlugosc_slowa():
-    dlugosc_slowa = ""
-    while dlugosc_slowa.isnumeric() is False:
-        dlugosc_slowa = input("Ile liter ma miec slowo? (4-12): ")
-        if 4 <= int(dlugosc_slowa) <= 12:
-            return int(dlugosc_slowa)
-
-
+    return choose_between("Ile liter ma miec slowo? (4-12): ", 4, 12)
 
 
 class GameState:
@@ -26,8 +21,13 @@ class GameState:
         self.proby = wyswietl_liczbe_prob()
         self.dlugosc = wyswietl_dlugosc_slowa()
         self.slowo = homework.hangman.lista_slow.wybierz_slowo(self.dlugosc)
+        self.slowo_lista = list(self.slowo)
         self.won = False
         self.chosen = 0
+
+    def record_choice(self, litera):
+        self.chosen = self.chosen + 1
+        self.slowo_lista.remove(litera)
 
     def all_chosen(self):
         return self.dlugosc == self.chosen
@@ -37,10 +37,11 @@ class GameState:
 
     def litera_w_slowie(cls):
         litera = input('Jaka litera jest w slowie? ')
-        if litera in cls.slowo:
+
+        if litera in cls.slowo_lista:
             print(f'{litera} jest w slowie!')
             # record the correct letter
-            cls.chosen = cls.chosen + 1
+            cls.record_choice(litera)
             # if all correct letters are chosen
             if cls.all_chosen():
                 # set win
@@ -55,10 +56,10 @@ while True:
     while not game.is_over():
         game.litera_w_slowie()
 
-    print('game is done')
+    print('Koniec gry!')
     if game.won:
-        print('yu win!')
-    game1 = input('Do you want to play again? Y/N ')
+        print('Wygrales!')
+    game1 = input('Czy chcesz zagrac jeszcze raz? T/N ')
     if game1 == 'N':
-        print('Thank you!')
+        print('Dzieki!')
         break
