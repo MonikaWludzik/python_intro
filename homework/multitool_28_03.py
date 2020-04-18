@@ -7,6 +7,8 @@ import homework.multitoolprog.piramida
 import homework.multitoolprog.wiekpsa
 import homework.multitoolprog.kwadrat
 import homework.multitoolprog.exitor
+import homework.hangman.wisielec
+import homework.hangman.lista_slow
 import random
 import csv
 
@@ -24,19 +26,20 @@ while True:
        4) Przeliczanie Fahrenheita na Celsiusa
        5) Przeliczanie Celsiusa na Fahrenheita 
        6) Obliczanie wieku psa
-       7) Wybierz program losowo bo nie wiem czego szukam:)
-       8) Wyjście z programu
+       7) Wisielec gra
+       R) Wybierz program losowo bo nie wiem czego szukam:)
+       X) Wyjście z programu
        Twój wybór: _""")
 
-    while choice not in ['1', '2', '3', '4', '5', '6', "R", "X"]:
-        choice = input("Podaj liczbę od 1 do 6 lub R albo X: ")
+    while choice not in ['1', '2', '3', '4', '5', '6', '7', "R", "X"]:
+        choice = input("Podaj liczbę od 1 do 7 lub R albo X: ")
 
     iterations = iterations + 1
 
     functions = {"1": homework.multitoolprog.kwadrat.draw_square, "2": homework.multitoolprog.piramida.piramida,
                  "3": homework.multitoolprog.pieniadze.pieniadze, "4": homework.multitoolprog.Celsius.Ceslius,
                  "5": homework.multitoolprog.Fahrenheit.Fahrenheit, "6": homework.multitoolprog.wiekpsa.wiekpsa,
-                 "X": homework.multitoolprog.exitor.exitor}
+                 "7": homework.hangman.wisielec.wisielec, "X": homework.multitoolprog.exitor.exitor}
 
     if choice == "R":
         choice = random.choice(list(functions.keys()))

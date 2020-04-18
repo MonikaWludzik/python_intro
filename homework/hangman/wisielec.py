@@ -16,6 +16,13 @@ def wyswietl_dlugosc_slowa():
     return choose_between("Ile liter ma miec slowo? (4-12): ", 4, 12)
 
 
+def limit_input(prompt, valid_values):
+    response = input(prompt)
+    while response not in valid_values:
+        response = input(prompt)
+    return response
+
+
 class GameState:
     def __init__(self):
         self.proby = wyswietl_liczbe_prob()
@@ -51,15 +58,18 @@ class GameState:
             cls.proby = cls.proby - 1
             print(f'Zgaduj dalej! Masz jeszcze {cls.proby}!')
 
-while True:
-    game = GameState()
-    while not game.is_over():
-        game.litera_w_slowie()
+def wisielec():
 
-    print('Koniec gry!')
-    if game.won:
-        print('Wygrales!')
-    game1 = input('Czy chcesz zagrac jeszcze raz? T/N ')
-    if game1 == 'N':
-        print('Dzieki!')
-        break
+
+    while True:
+        game = GameState()
+        while not game.is_over():
+            game.litera_w_slowie()
+
+        print('Koniec gry!')
+        if game.won:
+            print('Wygrales!')
+        game1 = limit_input('Czy chcesz zagrac jeszcze raz? T/N ', ['T', 'N'])
+        if game1 == 'N':
+            print('Dzieki!')
+            break
