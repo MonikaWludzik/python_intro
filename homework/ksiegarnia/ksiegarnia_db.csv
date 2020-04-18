@@ -1,0 +1,13 @@
+ID,Title,Date of entry,Date of last purchase,Amount,Typ,Author,Pages,Format,Price,Currency
+1,Materlims: A Historical Inquiry ,2020-04-01,2020-04-15,29,Book,Robin Gordon Brown,142,Paperback,20.00,USD
+2,Philosophy of Science,2020-04-05,2020-04-01,34,Book,Alex Rosenberg,400,Paperback,31.00,USD
+3,Metaethics,2020-04-08,2020-04-07,55,Book,Matthew Chrisman,250,Paperback,35.00,USD
+4,Core Questions in Philosophy,2020-04-12,2020-04-15,67,Book,Eliott Sober,300,Paperback,20.00,USD
+5,Personal Identity,2020-04-08,2020-04-01,78,Book,Harold Nooman,225,Paperback,31.00,USD
+6,The Aesthetics of Science,2020-04-11,2020-04-07,unlimited,Ebook,Stefana French,1600,epub,35.00,USD
+7,Philosophy of Relativism,2020-04-09,2020-04-15,unlimited,Ebook,Natalie Ashton,1000,epub,20.00,USD
+8,Social Espistemology,2020-04-12,2020-04-01,unlimited,Ebook,Robert Brown,1600,epub,31.00,USD
+9,Thought Experiments,2020-04-08,2020-04-07,unlimited,Ebook,Micheal T. Stuart,1300,epub,35.00,USD
+10,History of Western Philosophy,2020-04-12,2020-04-15,unlimited,Ebook,Bertrand Russell,1000,epub,15.00,USD
+11,Printed tote,2020-04-08,2020-04-07,120,Item,n,n,n,7.00,USD
+12,Postcard ,2020-04-12,2020-04-15,100,Item,n,n,n,1.00,USD
