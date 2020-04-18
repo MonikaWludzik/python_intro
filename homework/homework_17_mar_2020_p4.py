@@ -8,21 +8,39 @@ mainlist = ['masterpiece', 'centipede', 'skull', 'rest']
 smainlist = (sorted(mainlist, key=len,reverse = True)) #sorting the list by len
 item1 = smainlist[0]
 
-# toprow = []
-# for i in mainlist:
-# toprow.append("+"+ len(item1)*"-" + "+") appending items to the list
-def drawing_frames():
-    longest = len(item1) + 2
+def longest_value_in(row):
+    lengths = [len(cell) for cell in row]  # transforming values in a list; comprehension!!! in other langs, called "mapping"
+    return max(lengths)
 
+
+def drawing_one_row(mainlist, cell_width, draw_top=True):
+    longest = cell_width + 2
 
     toprow = [longest*"-" for i in mainlist] #looping the new list
     middlerow = [f" {i}".ljust(longest) for i in mainlist]
 
-    print('+' + "+".join(toprow)    + '+') #join statement to print string for each item on the list
+    if draw_top:
+        print('+' + "+".join(toprow)    + '+') #join statement to print string for each item on the list
     print('|' + '|'.join(middlerow) + '|')
     print('+' + "+".join(toprow)    + '+')
 
-drawing_frames()
+
+def drawing_frames(header, rows):
+    longest = longest_value_in(header)
+    for row in rows:
+        longest_in_row = longest_value_in(row)
+        if longest_in_row > longest:
+            longest = longest_in_row
+
+    drawing_one_row(header, longest)
+    for row in rows:
+        drawing_one_row(row, longest, False)
+
+
+# toprow = []
+# for i in mainlist:
+# toprow.append("+"+ len(item1)*"-" + "+") appending items to the list
+
 
 # for i in range(smainlist):
 #     i=+1
