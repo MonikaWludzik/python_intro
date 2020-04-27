@@ -9,7 +9,8 @@ cart = Basket()
 @app.route('/')
 def show_bookstore():
     products = inventory.stock()
-    return render_template('index.html', products=products)
+    in_cart = len(cart.show())
+    return render_template('index.html', products=products, in_cart=in_cart)
 
 @app.route('/product/<id>')
 def show_product(id):
@@ -23,10 +24,18 @@ def add_to_cart():
     cart.add_to_basket(item)
     return redirect(url_for('show_bookstore'))
 
+@app.route('/cart/update', methods=['POST'])
+def update_cart():
+    id = request.form['id']
+    qty = int(request.form['qty'])
+    cart.change_amount(id, qty)
+    return redirect(url_for('show_cart'))
+
 @app.route('/cart', methods=['GET'])
 def show_cart():
     cost = cart.total_cost()
-    items = cart.items
+    items = cart.show()
     return render_template('cart.html', cost=cost, items=items)
+
 
 app.run()

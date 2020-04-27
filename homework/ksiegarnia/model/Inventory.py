@@ -29,25 +29,55 @@ class Ebook(Book):
 
 class Basket():
     def __init__(self):
-        self.items = []
+        # self.items = []
+        self.inside = {}
 
     def add_to_basket(self, item):
-        self.items.append(item)
+        if item.id in self.inside:
+            existing = self.inside[item.id]
+            existing['quantity'] += 1
+        else:
+            newthing = {}
+            newthing['id'] = item.id
+            newthing['title'] = item.title
+            newthing['price'] = item.price
+            newthing['quantity'] = 1
+            self.inside[item.id] = newthing
+
+        # self.items.append(item)
         print (f'You chose {item}')
+        print ('current basket', self.inside)
 
     def remove_from_basket(self, item):
-        self.items.remove(item)
+        if item.id in self.inside:
+            existing = self.inside[item.id]
+            existing['quantity'] -= 1
+            # let's not pay the customer money for them NOT taking our stuff.
+            if existing['quantity'] <= 0:
+                del self.inside[item.id]
+        # self.items.remove(item)
         pass
 
+    def change_amount(self, id, qty):
+        if id in self.inside:
+            if qty <= 0:
+                del self.inside[id]
+            else:
+                existing = self.inside[id]
+                existing['quantity'] = qty
+
     def check_basket(self):
-        print(self.items)
+        print(self.inside)
         total_cost = self.total_cost()
-        total_items = len(self.items)
+        total_items = sum([thing['quantity'] for thing in self.inside.values()])
         print(f'Total price: {total_cost}, total items: {total_items}')
         pass
 
+    def show(self):
+        return self.inside.values()
+
     def total_cost(self):
-        costs = [item.price for item in self.items]
+        costs = [thing['price'] * thing['quantity'] for thing in self.inside.values()]
         total_cost = sum(costs)
         return total_cost
 

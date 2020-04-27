@@ -48,6 +48,13 @@ class Inventory:
             item_to_get.amount = str(amount - 1)
             return item_to_get
 
+    def reclaim(self, id):
+        item_id = int(id)
+        if item_id not in self.inventory.keys():
+            print("We don't sell that... stop it. This is harrassment!")
+        else:
+            item_to_reclaim = self.inventory[item_id]
+            item_to_reclaim.amount += 1
 
 inventory = Inventory()
 cart = homework.ksiegarnia.model.Inventory.Basket()

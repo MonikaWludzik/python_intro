@@ -9,18 +9,26 @@
         <thead>
             <tr>
                 <th>Item</th>
+                <th>Quantity</th>
                 <th>Cost</th>
             </tr>
         </thead>
         {% for item in items %}
         <tr>
             <td>{{ item.title }}</td>
+            <td>
+                <form id="update_{{ item.id }}" action="/cart/update" method="post">
+                    <input type="hidden" name="id" value="{{ item.id }}" />
+                    <input type="number" name="qty" value="{{ item.quantity }}" />
+                </form>
+            </td>
             <td>{{ item.price }}</td>
+            <td><button form="update_{{ item.id }}" name="update">Update</button></td>
         </tr>
         {% endfor %}
         <tfoot>
             <tr>
-                <td>Total cost:</td>
+                <td colspan="2">Total cost:</td>
                 <td>{{ cost }}</td>
             </tr>
         </tfoot>
