@@ -1,0 +1,20 @@
+<html>
+<body>
+    <h1>My bookstore!</h1>
+    <p>
+        Choose stuff to buy. Please. It'd be great if I earned something from this.
+    </p>
+    <h2>Catalog</h2>
+    <ul>
+        {% for product in products %}
+        <li>
+            <a href="/product/{{ product.id }}">
+                <div class="product">
+                    <h3>{{ product.title }}</h3>
+                </div>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

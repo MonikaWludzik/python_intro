@@ -1,0 +1,21 @@
+<html>
+<body>
+    <h1>{{ product.title}}</h1>
+    <p>
+        This is a really good {{ product.typ }}. You should totally buy it.
+    </p>
+    <h2>Details</h2>
+    <dl>
+        <dt>Stock on hand</dt>
+        <dd>{{ product.amount }}</dd>
+
+        <dt>Price</dt>
+        <dd>{{ product.price }}</dd>
+    </dl>
+
+    <form action="/cart" method="post">
+        <input type="hidden" name="id" value="{{ product.id }}" />
+        <button>Add to cart</button>
+    </form>
+</body>
+</html>
