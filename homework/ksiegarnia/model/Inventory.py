@@ -5,9 +5,9 @@ class Item():
         # self.date_entry
         # self.date_purchase
         self.amount = 0
-        # self.typ
-        # self.author
-        # self.pages
+        self.typ = ""
+        self.author = ""
+        #self.pages
         # self.format
         self.price = 0
         # self.currency

@@ -24,6 +24,8 @@ class Inventory:
                 item = homework.ksiegarnia.model.Inventory.Item()
                 item.id = row[0]
                 item.title = row[1]
+                item.author = row[6]
+                item.typ = row[5]
                 try:
                     item.amount = int(row[4])
                 except:
