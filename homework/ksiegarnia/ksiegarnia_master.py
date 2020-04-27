@@ -1,50 +1,64 @@
 import openpyxl
 import datetime
+import os
 import homework.homework_17_mar_2020_p4
 import homework.ksiegarnia.model.Inventory
 import homework.multitoolprog.Celsius
 
+script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
+
 print("witaj w naszej ksiegarni! przejdz do listy produktow.")
 
-inventory = {}
-with open('ksiegarnia_db.csv', 'r+') as file:
-    headers = file.readline()
-    headers = headers.rstrip().split(',')
-    rows = []
-    for line in file.readlines():
-        row = line.rstrip().split(",")
-        id = int(row[0])
-        rows.append(row)
-        # todo: turn the array of values in to a class, based on its "type"
-        item = homework.ksiegarnia.model.Inventory.Item()
-        item.id = row[0]
-        item.title = row[1]
-        try:
-            item.amount = int(row[4])
-        except:
-            item.amount = -1
-        item.price = float(row[9])
-        inventory[id] = item
+class Inventory:
+    def __init__(self):
+        self.inventory = {}
+        with open(os.path.join(script_dir, 'ksiegarnia_db.csv'), 'r+') as file:
+            headers = file.readline()
+            headers = headers.rstrip().split(',')
+            rows = []
+            for line in file.readlines():
+                row = line.rstrip().split(",")
+                id = int(row[0])
+                rows.append(row)
+                # todo: turn the array of values in to a class, based on its "type"
+                item = homework.ksiegarnia.model.Inventory.Item()
+                item.id = row[0]
+                item.title = row[1]
+                try:
+                    item.amount = int(row[4])
+                except:
+                    item.amount = -1
+                item.price = float(row[9])
+                self.inventory[id] = item
+
+    def stock(self):
+        return self.inventory.values()
+
+    def get(self, id):
+        return self.inventory[int(id)]
+
+    def pull(self, id):
+        item_id = int(id)
+        if item_id not in self.inventory.keys():
+            print('No such item in the inventory.')
+        else:
+            item_to_get = self.inventory[item_id]
+            # todo: use a class instead of an array of values
+            amount = int(item_to_get.amount)
+            item_to_get.amount = str(amount - 1)
+            return item_to_get
 
 
+inventory = Inventory()
 cart = homework.ksiegarnia.model.Inventory.Basket()
 
 def pokaz_produkty():
     homework.homework_17_mar_2020_p4.drawing_frames(headers, rows)
 
-def pull_from_inventory(item_id):
-    if item_id not in inventory.keys():
-        print('No such item in the inventory.')
-    else:
-        item_to_get = inventory[item_id]
-        # todo: use a class instead of an array of values
-        amount = int(item_to_get.amount)
-        item_to_get.amount = str(amount - 1)
-        return item_to_get
 
 def buy_something():
     user_wants = homework.multitoolprog.Celsius.interger_check('what item do you want? enter its id: ')
-    item = pull_from_inventory(user_wants)
+    item = inventory.pull(user_wants)
     cart.add_to_basket(item)
 
 
